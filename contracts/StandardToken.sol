@@ -1,11 +1,11 @@
 pragma solidity ^0.4.18;
 
-import './ERC20Lib.sol';
+import './ERC20LibInterface.sol';
 
 contract StandardToken {
-   using ERC20Lib for ERC20Lib.TokenStorage;
+   using ERC20LibInterface for ERC20LibInterface.TokenStorage;
 
-   ERC20Lib.TokenStorage token;
+   ERC20LibInterface.TokenStorage token;
 
    function StandardToken(uint _initialSupply) public {
       token.init(_initialSupply);
