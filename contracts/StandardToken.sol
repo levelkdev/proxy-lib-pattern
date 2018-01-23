@@ -12,7 +12,7 @@ contract StandardToken {
    }
 
    function totalSupply() public constant returns (uint) {
-     return token.totalSupply;
+     return token.totalSupply();
    }
 
    function balanceOf(address who) public constant returns (uint) {

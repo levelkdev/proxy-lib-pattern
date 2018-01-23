@@ -8,14 +8,14 @@ library ERC20Lib {
   struct TokenStorage {
     mapping (address => uint) balances;
     mapping (address => mapping (address => uint)) allowed;
-    uint totalSupply;
+    uint256 totalSupply_;
   }
 
   event Transfer(address indexed from, address indexed to, uint value);
   event Approval(address indexed owner, address indexed spender, uint value);
   
   function init(TokenStorage storage self, uint _initial_supply) public {
-    self.totalSupply = _initial_supply;
+    self.totalSupply_ = _initial_supply;
     self.balances[msg.sender] = _initial_supply;
   }
 
@@ -38,6 +38,10 @@ library ERC20Lib {
 
   function balanceOf(TokenStorage storage self, address _owner) public constant returns (uint balance) {
     return self.balances[_owner];
+  }
+
+  function totalSupply(TokenStorage storage self) public view returns (uint256) {
+    return self.totalSupply_;
   }
 
   function approve(TokenStorage storage self, address _spender, uint _value) public returns (bool success) {
