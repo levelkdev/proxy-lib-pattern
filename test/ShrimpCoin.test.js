@@ -11,7 +11,7 @@ const Dispatcher = artifacts.require('Dispatcher')
 const ShrimpCoin = artifacts.require('ShrimpCoin')
 
 describe('ShrimpCoin', () => {
-  it.only('proxy lib update test', async () => {
+  it('proxy lib update test', async () => {
     const safeMathLib = await SafeMathLib.new()
     ERC20Lib1.link('SafeMathLib', safeMathLib.address)
     const erc20Lib1 = await ERC20Lib1.new()
