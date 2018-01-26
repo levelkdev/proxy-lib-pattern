@@ -1,7 +1,7 @@
 pragma solidity 0.4.18;
 
 library EternalStorageLib {
-  struct Storage {
+  struct KeyValueStore {
     mapping(bytes32 => uint256) uIntStorage;
     mapping(bytes32 => string) stringStorage;
     mapping(bytes32 => address) addressStorage;
@@ -14,37 +14,37 @@ library EternalStorageLib {
 
   /// @param self The storage struct
   /// @param key The key for the record
-  function getAddress(Storage storage self, bytes32 key) external view returns (address) {
+  function getAddress(KeyValueStore storage self, bytes32 key) view returns (address) {
       return self.addressStorage[key];
   }
 
   /// @param self The storage struct
   /// @param key The key for the record
-  function getUint(Storage storage self, bytes32 key) external view returns (uint) {
+  function getUint(KeyValueStore storage self, bytes32 key) view returns (uint) {
       return self.uIntStorage[key];
   }
 
   /// @param self The storage struct
   /// @param key The key for the record
-  function getString(Storage storage self, bytes32 key) external view returns (string) {
+  function getString(KeyValueStore storage self, bytes32 key) view returns (string) {
       return self.stringStorage[key];
   }
 
   /// @param self The storage struct
   /// @param key The key for the record
-  function getBytes(Storage storage self, bytes32 key) external view returns (bytes) {
+  function getBytes(KeyValueStore storage self, bytes32 key) view returns (bytes) {
       return self.bytesStorage[key];
   }
 
   /// @param self The storage struct
   /// @param key The key for the record
-  function getBool(Storage storage self, bytes32 key) external view returns (bool) {
+  function getBool(KeyValueStore storage self, bytes32 key) view returns (bool) {
       return self.boolStorage[key];
   }
 
   /// @param self The storage struct
   /// @param key The key for the record
-  function getInt(Storage storage self, bytes32 key) external view returns (int) {
+  function getInt(KeyValueStore storage self, bytes32 key) view returns (int) {
       return self.intStorage[key];
   }
 
@@ -52,75 +52,75 @@ library EternalStorageLib {
 
   /// @param self The storage struct
   /// @param key The key for the record
-  function setAddress(Storage storage self, bytes32 key, address _value) external {
-      self.addressStorage[key] = _value;
+  function setAddress(KeyValueStore storage self, bytes32 key, address value) {
+      self.addressStorage[key] = value;
   }
 
   /// @param self The storage struct
   /// @param key The key for the record
-  function setUint(Storage storage self, bytes32 key, uint _value) external {
-      self.uIntStorage[key] = _value;
+  function setUint(KeyValueStore storage self, bytes32 key, uint value) {
+      self.uIntStorage[key] = value;
   }
 
   /// @param self The storage struct
   /// @param key The key for the record
-  function setString(Storage storage self, bytes32 key, string _value) external {
-      self.stringStorage[key] = _value;
+  function setString(KeyValueStore storage self, bytes32 key, string value) {
+      self.stringStorage[key] = value;
   }
 
   /// @param self The storage struct
   /// @param key The key for the record
-  function setBytes(Storage storage self, bytes32 key, bytes _value) external {
-      self.bytesStorage[key] = _value;
+  function setBytes(KeyValueStore storage self, bytes32 key, bytes value) {
+      self.bytesStorage[key] = value;
   }
 
   /// @param self The storage struct
   /// @param key The key for the record
-  function setBool(Storage storage self, bytes32 key, bool _value) external {
-      self.boolStorage[key] = _value;
+  function setBool(KeyValueStore storage self, bytes32 key, bool value) {
+      self.boolStorage[key] = value;
   }
 
   /// @param self The storage struct
   /// @param key The key for the record
-  function setInt(Storage storage self, bytes32 key, int _value) external {
-      self.intStorage[key] = _value;
+  function setInt(KeyValueStore storage self, bytes32 key, int value) {
+      self.intStorage[key] = value;
   }
 
   /**** Delete Methods ***********/
 
   /// @param self The storage struct
   /// @param key The key for the record
-  function deleteAddress(Storage storage self, bytes32 key) external {
+  function deleteAddress(KeyValueStore storage self, bytes32 key) {
       delete self.addressStorage[key];
   }
 
   /// @param self The storage struct
   /// @param key The key for the record
-  function deleteUint(Storage storage self, bytes32 key) external {
+  function deleteUint(KeyValueStore storage self, bytes32 key) {
       delete self.uIntStorage[key];
   }
 
   /// @param self The storage struct
   /// @param key The key for the record
-  function deleteString(Storage storage self, bytes32 key) external {
+  function deleteString(KeyValueStore storage self, bytes32 key) {
       delete self.stringStorage[key];
   }
 
   /// @param self The storage struct
   /// @param key The key for the record
-  function deleteBytes(Storage storage self, bytes32 key) external {
+  function deleteBytes(KeyValueStore storage self, bytes32 key) {
       delete self.bytesStorage[key];
   }
 
   /// @param self The storage struct
   /// @param key The key for the record
-  function deleteBool(Storage storage self, bytes32 key) external {
+  function deleteBool(KeyValueStore storage self, bytes32 key) {
       delete self.boolStorage[key];
   }
 
   /// @param self The storage struct
   /// @param key The key for the record
-  function deleteInt(Storage storage self, bytes32 key) external {
+  function deleteInt(KeyValueStore storage self, bytes32 key) {
       delete self.intStorage[key];
   }
 }
