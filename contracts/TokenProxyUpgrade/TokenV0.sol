@@ -7,7 +7,7 @@ contract TokenV0 is UpgradableTokenStorage {
   using SafeMath for uint256;
   event Initialized(address initializer, uint256 value);
   event Transfer(address indexed from, address indexed to, uint256 value);
-  event Approval(address indexed owner, address indexed spender, uint256 value);
+  event Approval(address indexed owner, address indexed spender, uint256 value); 
 
   function init() public {
     uint256 initAmount = 1 * 10**9;
