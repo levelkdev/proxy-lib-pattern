@@ -10,7 +10,7 @@ const TokenV1 = artifacts.require('TokenV1')
 const TokenProxy = artifacts.require('TokenProxy')
 
 describe('TokenProxyUpgrade', () => {
-  it.only('token proxy upgrade', async () => {
+  it('token proxy upgrade', async () => {
     const tokenProxy = await TokenProxy.new()
     const tokenV0 = await TokenV0.new()
     await tokenProxy.upgradeTo('v0', tokenV0.address)
