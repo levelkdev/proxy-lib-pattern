@@ -55,7 +55,7 @@ describe('SimpleUpgrade', () => {
     await simpleCore.upgradeTo('v2', simpleV2.address)
     const simpleCoreV2 = await SimpleV2.at(simpleCore.address)
 
-    const acct1 = '0x3284e1ca52b1bd5428e69ecbfe164f8e68baf4c1'
+    /* const acct1 = '0x3284e1ca52b1bd5428e69ecbfe164f8e68baf4c1'
     const acct2 = '0x62d82601d171e07b73145ea9246c6d4f9b1f2d70'
     console.log(`add balances[${acct1}] = 4000`)
     simpleCoreV2.setBalance(acct1, 4000)
@@ -63,6 +63,12 @@ describe('SimpleUpgrade', () => {
     simpleCoreV2.setBalance(acct2, 6500)
 
     console.log(`balances[${acct1}]: `, (await simpleCoreV2.getBalance(acct1)).toNumber())
-    console.log(`balances[${acct2}]: `, (await simpleCoreV2.getBalance(acct2)).toNumber())
+    console.log(`balances[${acct2}]: `, (await simpleCoreV2.getBalance(acct2)).toNumber())  */
+
+    console.log('')
+    console.log('account: ', accounts[0])
+    console.log('buy: ', 0.02 * 10 ** 18)
+    await simpleCoreV2.buy({ value: 0.02 * 10 ** 18 })
+    console.log(`balances[${accounts[0]}] = `, (await simpleCoreV2.getSenderBalance()).toNumber())
   })
 })

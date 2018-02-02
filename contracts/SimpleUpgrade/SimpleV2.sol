@@ -1,15 +1,16 @@
 pragma solidity ^0.4.18;
 
 import "./SimpleV1.sol";
+import "./BalanceStore.sol";
 
-contract SimpleV2 is SimpleV1 {
+contract SimpleV2 is SimpleV1, BalanceStore {
 
-  function setBalance(address owner, uint256 value) public {
-    _store.setUint(keccak256("balances", owner), value);
+  function buy() public payable {
+    setBalance(msg.sender, msg.value);
   }
 
-  function getBalance(address owner) view returns (uint256) {
-    return _store.getUint(keccak256("balances", owner));
+  function getSenderBalance() public view returns (uint256) {
+    return getBalance(msg.sender);
   }
 
 }
