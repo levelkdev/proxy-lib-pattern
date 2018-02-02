@@ -1,9 +1,9 @@
 pragma solidity ^0.4.18;
 
 import "zeppelin-solidity/contracts/Math/SafeMath.sol";
-import "./UpgradableTokenStorage.sol";
+import "./TokenStorage.sol";
 
-contract TokenV0 is UpgradableTokenStorage {
+contract TokenV0 is TokenStorage {
   using SafeMath for uint256;
   event Initialized(address initializer, uint256 value);
   event Transfer(address indexed from, address indexed to, uint256 value);
