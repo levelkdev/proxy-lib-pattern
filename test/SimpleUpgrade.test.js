@@ -9,6 +9,7 @@ const SimpleStorageLib = artifacts.require('SimpleStorageLib')
 
 const SimpleV0 = artifacts.require('SimpleV0')
 const SimpleV1 = artifacts.require('SimpleV1')
+const SimpleV2 = artifacts.require('SimpleV2')
 const SimpleCore = artifacts.require('SimpleCore')
 
 describe('SimpleUpgrade', () => {
@@ -47,5 +48,21 @@ describe('SimpleUpgrade', () => {
     console.log('setOther()')
     await simpleCoreV1.setOther()
     console.log('other: ', (await simpleCoreV1.getOther()).toNumber())
+
+    console.log('upgradeTo v2')
+    SimpleV2.link('SimpleStorageLib', simpleStorageLib.address)
+    const simpleV2 = await SimpleV2.new()
+    await simpleCore.upgradeTo('v2', simpleV2.address)
+    const simpleCoreV2 = await SimpleV2.at(simpleCore.address)
+
+    const acct1 = '0x3284e1ca52b1bd5428e69ecbfe164f8e68baf4c1'
+    const acct2 = '0x62d82601d171e07b73145ea9246c6d4f9b1f2d70'
+    console.log(`add balances[${acct1}] = 4000`)
+    simpleCoreV2.setBalance(acct1, 4000)
+    console.log(`add balances[${acct2}] = 6500`)
+    simpleCoreV2.setBalance(acct2, 6500)
+
+    console.log(`balances[${acct1}]: `, (await simpleCoreV2.getBalance(acct1)).toNumber())
+    console.log(`balances[${acct2}]: `, (await simpleCoreV2.getBalance(acct2)).toNumber())
   })
 })
