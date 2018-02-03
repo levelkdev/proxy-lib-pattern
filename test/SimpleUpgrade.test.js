@@ -13,7 +13,7 @@ const SimpleV2 = artifacts.require('SimpleV2')
 const SimpleCore = artifacts.require('SimpleCore')
 
 describe('SimpleUpgrade', () => {
-  it.only('bare bones contract upgradability, here we go!', async () => {
+  it('bare bones contract upgradability, here we go!', async () => {
     const eternalStorageLib = await EternalStorageLib.new()
 
     SimpleCore.link('EternalStorageLib', eternalStorageLib.address)
