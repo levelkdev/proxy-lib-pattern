@@ -22,7 +22,7 @@ contract MasterStorage {
 
   /**** Ownership Methods ***********/
 
-  function transferKeyOwnership(address newOwner) public {
+  function transferOwnership(address newOwner) public {
     if (_ownerToKeyAddress[msg.sender] == 0x0) {
       _ownerToKeyAddress[newOwner] = msg.sender;
     } else {
