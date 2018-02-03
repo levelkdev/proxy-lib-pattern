@@ -5,7 +5,7 @@ import { web3 } from './helpers/w3'
 
 const accounts = web3.eth.accounts
 
-const SimpleStorageLib = artifacts.require('SimpleStorageLib')
+const EternalStorageLib = artifacts.require('EternalStorageLib')
 
 const SimpleV0 = artifacts.require('SimpleV0')
 const SimpleV1 = artifacts.require('SimpleV1')
@@ -14,12 +14,12 @@ const SimpleCore = artifacts.require('SimpleCore')
 
 describe('SimpleUpgrade', () => {
   it.only('bare bones contract upgradability, here we go!', async () => {
-    const simpleStorageLib = await SimpleStorageLib.new()
+    const eternalStorageLib = await EternalStorageLib.new()
 
-    SimpleCore.link('SimpleStorageLib', simpleStorageLib.address)
+    SimpleCore.link('EternalStorageLib', eternalStorageLib.address)
     const simpleCore = await SimpleCore.new()
 
-    SimpleV0.link('SimpleStorageLib', simpleStorageLib.address)
+    SimpleV0.link('EternalStorageLib', eternalStorageLib.address)
     const simpleV0 = await SimpleV0.new()
 
     console.log('upgradeTo v0')
@@ -34,7 +34,7 @@ describe('SimpleUpgrade', () => {
     console.log('')
 
     console.log('upgradeTo v1')
-    SimpleV1.link('SimpleStorageLib', simpleStorageLib.address)
+    SimpleV1.link('EternalStorageLib', eternalStorageLib.address)
     const simpleV1 = await SimpleV1.new()
     await simpleCore.upgradeTo('v1', simpleV1.address)
     const simpleCoreV1 = await SimpleV1.at(simpleCore.address)
@@ -50,7 +50,7 @@ describe('SimpleUpgrade', () => {
     console.log('other: ', (await simpleCoreV1.getOther()).toNumber())
 
     console.log('upgradeTo v2')
-    SimpleV2.link('SimpleStorageLib', simpleStorageLib.address)
+    SimpleV2.link('EternalStorageLib', eternalStorageLib.address)
     const simpleV2 = await SimpleV2.new()
     await simpleCore.upgradeTo('v2', simpleV2.address)
     const simpleCoreV2 = await SimpleV2.at(simpleCore.address)
