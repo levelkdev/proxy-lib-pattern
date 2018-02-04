@@ -33,27 +33,27 @@ contract MasterStorage {
 
   /**** Get Methods ***********/
 
-  function getAddress(bytes32 key) public view returns (address) {
+  function getAddress(bytes32 key) public view keyAddressIsLive returns (address) {
       return _addressStorage[keyAddress()][key];
   }
 
-  function getUint(bytes32 key) public view returns (uint) {
+  function getUint(bytes32 key) public view keyAddressIsLive returns (uint) {
       return _uintStorage[keyAddress()][key];
   }
 
-  function getString(bytes32 key) public view returns (string) {
+  function getString(bytes32 key) public view keyAddressIsLive returns (string) {
       return _stringStorage[keyAddress()][key];
   }
 
-  function getBytes(bytes32 key) public view returns (bytes) {
+  function getBytes(bytes32 key) public view keyAddressIsLive returns (bytes) {
       return _bytesStorage[keyAddress()][key];
   }
 
-  function getBool(bytes32 key) public view returns (bool) {
+  function getBool(bytes32 key) public view keyAddressIsLive returns (bool) {
       return _boolStorage[keyAddress()][key];
   }
 
-  function getInt(bytes32 key) public view returns (int) {
+  function getInt(bytes32 key) public view keyAddressIsLive returns (int) {
       return _intStorage[keyAddress()][key];
   }
 

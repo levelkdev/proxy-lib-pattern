@@ -1,14 +1,11 @@
 pragma solidity ^0.4.18;
 
 import "../MasterStorage/MasterStorage.sol";
+import "./PublicUpgradable.sol";
 
-contract MasterStorageEx1 {
+contract MasterStorageEx1 is PublicUpgradable {
 
-  MasterStorage _store;
-
-  function MasterStorageEx1(MasterStorage store) public {
-    _store = store;
-  }
+  function MasterStorageEx1(MasterStorage store) public PublicUpgradable(store) { }
 
   function setNum(uint256 n) public {
     _store.setUint("number", n);
