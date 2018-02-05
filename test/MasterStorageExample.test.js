@@ -39,6 +39,7 @@ describe('MasterStorage Example', () => {
     const masterStorage = await MasterStorage.new()
     const erc20Proxy = await ERC20Storage.new()
     const myToken1 = await MyToken.new(erc20Proxy.address, masterStorage.address, 10 * 10 ** 18)
+    const myToken2 = await MyToken.new(erc20Proxy.address, masterStorage.address, 45 * 10 ** 18)
 
     const otherProxy = await OtherStorage.new()
     const otherThing = await OtherThing.new(otherProxy.address, masterStorage.address, 4455667788)
@@ -47,6 +48,10 @@ describe('MasterStorage Example', () => {
 
     console.log('myToken1:')
     console.log('  totalySupply(): ', (await myToken1.totalSupply()).toNumber())
+    console.log('')
+
+    console.log('myToken2:')
+    console.log('  totalySupply(): ', (await myToken2.totalSupply()).toNumber())
     console.log('')
 
     console.log('otherThing:')
