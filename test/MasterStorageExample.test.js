@@ -7,9 +7,11 @@ const accounts = web3.eth.accounts
 
 const MasterStorage = artifacts.require('MasterStorage')
 const ERC20Storage = artifacts.require('ERC20Storage')
+const OtherStorage = artifacts.require('OtherStorage')
 const MasterStorageEx1 = artifacts.require('MasterStorageEx1')
 const MasterStorageEx2 = artifacts.require('MasterStorageEx2')
 const MyToken = artifacts.require('MyToken')
+const OtherThing = artifacts.require('OtherThing')
 
 describe('MasterStorage Example', () => {
   it('test of master storage contract', async () => {
@@ -37,13 +39,17 @@ describe('MasterStorage Example', () => {
     const masterStorage = await MasterStorage.new()
     const erc20Proxy = await ERC20Storage.new()
     const myToken1 = await MyToken.new(erc20Proxy.address, masterStorage.address, 10 * 10 ** 18)
+
+    const otherProxy = await OtherStorage.new()
+    const otherThing = await OtherThing.new(otherProxy.address, masterStorage.address, 4455667788)
+
     console.log('')
 
     console.log('myToken1:')
     console.log('  totalySupply(): ', (await myToken1.totalSupply()).toNumber())
     console.log('')
 
-    /* console.log('myToken2:')
-    console.log('  totalySupply(): ', (await myToken2.totalSupply()).toNumber()) */
+    console.log('otherThing:')
+    console.log('  amount(): ', (await otherThing.amount()).toNumber())
   })
 })
