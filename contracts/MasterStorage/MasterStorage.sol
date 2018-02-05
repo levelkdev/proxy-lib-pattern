@@ -1,6 +1,8 @@
 pragma solidity ^0.4.18;
 
-contract MasterStorage {
+import "../Proxy/PublicProxy.sol";
+
+contract MasterStorage is PublicProxy {
 
   /**** Ownership Mappings ***********/
 

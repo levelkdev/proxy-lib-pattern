@@ -1,16 +1,23 @@
 pragma solidity ^0.4.18;
 
+import "../../MasterStorage/ERC20Storage.sol";
 import "../../MasterStorage/MasterStorage.sol";
-import "./TokenStorage.sol";
-import "../OwnerUpgradable.sol";
 
-contract MyToken is OwnerUpgradable, TokenStorage {
+contract MyToken {
 
   event Transfer(address indexed from, address indexed to, uint value);
   event Approval(address indexed owner, address indexed spender, uint value);
 
-  function MyToken(MasterStorage store, uint256 initialSupply) public OwnerUpgradable(store) {
-    addSupply(initialSupply);
+  ERC20Storage _store;
+
+  function MyToken(ERC20Storage erc20Proxy, MasterStorage store, uint256 initialSupply) public {
+    _store = ERC20Storage(store);
+    _store.setProxy(erc20Proxy);
+    _store.addSupply(initialSupply);
+  }
+
+  function totalSupply() public view returns (uint256) {
+    return _store.totalSupply();
   }
   
   /* function init(ERC20LibInterface.TokenStorage storage self, uint _initial_supply) public {
